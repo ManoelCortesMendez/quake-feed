@@ -1,7 +1,9 @@
 package com.example.android.quakereport;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
+import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,7 +37,7 @@ public class EarthquakeAdapter extends ArrayAdapter {
         }
 
         // Get current earthquake object
-        Earthquake currentEarthquake = (Earthquake) getItem(position);
+        final Earthquake currentEarthquake = (Earthquake) getItem(position);
 
         // Set magnitude
         TextView magnitudeTextView = earthquakeItemView.findViewById(R.id.magnitude_text_view);
