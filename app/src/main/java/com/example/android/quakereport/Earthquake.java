@@ -3,19 +3,19 @@ package com.example.android.quakereport;
 public class Earthquake {
 
     // Define member variables
-    private double magnitude;
+    private String magnitude;
     private String location;
-    private String date;
+    private long time;
 
     // Define constructor
-    public Earthquake(double magnitude, String location, String date) {
+    public Earthquake(String magnitude, String location, long time) {
         this.magnitude = magnitude;
         this.location = location;
-        this.date = date;
+        this.time = time;
     }
 
     // Define methods
-    public double getMagnitude() { return magnitude; }
+    public String getMagnitude() { return magnitude; }
     public String getLocation() { return location; }
-    public String getDate() { return date; }
+    public long getTime() { return time; }
 }
