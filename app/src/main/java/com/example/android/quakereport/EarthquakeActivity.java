@@ -10,10 +10,12 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Loader;
+import android.widget.TextView;
 
 public class EarthquakeActivity extends AppCompatActivity implements LoaderCallbacks<List<Earthquake>>  {
 
@@ -24,6 +26,9 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
     private static final int EARTHQUAKE_LOADER_ID = 0;
 
     private EarthquakeAdapter earthquakeAdapter;
+
+    /** TextView that is displayed when the list is empty */
+    private TextView emptyStateTextView;
 
     // Define API call -- to get earthquake data
     private static final String USGS_REQUEST_URL = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&eventtype=earthquake&orderby=time&minmag=6&limit=10";
@@ -44,6 +49,9 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
         if (earthquakes != null && !earthquakes.isEmpty()) {
             earthquakeAdapter.addAll(earthquakes);
         }
+
+        // Set empty state text to display "No earthquakes found."
+        emptyStateTextView.setText(R.string.no_earthquakes_found);
     }
 
     @Override
@@ -59,6 +67,11 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
 
         // Find a reference to the {@link ListView} in the layout
         ListView earthquakeListView = findViewById(R.id.earthquake_list_view);
+
+        // Set view to empty view --- if no earthquakes data is found
+        // The empty view starts without text --- so its not shown while network data is being fetched
+        emptyStateTextView = findViewById(R.id.empty_state_text_view);
+        earthquakeListView.setEmptyView(emptyStateTextView);
 
         // Create a new adapter that takes an empty list of earthquakes as input
         earthquakeAdapter = new EarthquakeAdapter(this, new ArrayList<Earthquake>());

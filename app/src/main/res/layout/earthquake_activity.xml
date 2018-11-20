@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Layout for a list of earthquakes -->
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/earthquake_list_view"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
+<android.support.constraint.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
-    android:divider="@null"
-    android:dividerHeight="8dp"
-    android:padding="8dp" />
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/earthquake_list_view"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@null"
+        android:dividerHeight="8dp"
+        android:padding="8dp" />
+
+    <TextView
+        android:id="@+id/empty_state_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/earthquake_list_view"
+        app:layout_constraintEnd_toEndOf="@+id/earthquake_list_view"
+        app:layout_constraintStart_toStartOf="@+id/earthquake_list_view"
+        app:layout_constraintTop_toTopOf="@+id/earthquake_list_view" />
+
+</android.support.constraint.ConstraintLayout>
