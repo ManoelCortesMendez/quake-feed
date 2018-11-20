@@ -15,6 +15,7 @@ import java.util.Set;
 import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Loader;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class EarthquakeActivity extends AppCompatActivity implements LoaderCallbacks<List<Earthquake>>  {
@@ -41,6 +42,10 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
 
     @Override
     public void onLoadFinished(Loader<List<Earthquake>> loader, List<Earthquake> earthquakes) {
+        // Hide the progress bar since data has now finished loading
+        ProgressBar progressBarView = findViewById(R.id.progress_bar_view);
+        progressBarView.setVisibility(View.GONE);
+
         // Clear the adapter of previous earthquake data
         earthquakeAdapter.clear();
 

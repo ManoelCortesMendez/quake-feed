@@ -24,4 +24,13 @@
         app:layout_constraintStart_toStartOf="@+id/earthquake_list_view"
         app:layout_constraintTop_toTopOf="@+id/earthquake_list_view" />
 
+    <ProgressBar
+        android:id="@+id/progress_bar_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/earthquake_list_view"
+        app:layout_constraintEnd_toEndOf="@+id/earthquake_list_view"
+        app:layout_constraintStart_toStartOf="@+id/earthquake_list_view"
+        app:layout_constraintTop_toTopOf="@+id/earthquake_list_view" />
+
 </android.support.constraint.ConstraintLayout>
