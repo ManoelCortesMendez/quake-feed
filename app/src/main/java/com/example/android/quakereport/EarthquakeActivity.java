@@ -7,6 +7,8 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -130,5 +132,40 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
             // Update empty state with no connection error message
             emptyStateTextView.setText(R.string.no_internet_connection);
         }
+    }
+
+    /**
+     * Initialize content of settings activity. Puts options menu in app bar.
+     *
+     * @param menu Options menu in which to place our content.
+     * @return True when once menu is successfully inflated.
+     */
+    @Override
+    // This method initialize the contents of the Activity's options menu.
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the Options Menu we specified in XML
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    /**
+     * Method that specifies to open the SettingsActivity when the user selects the Options Menu.
+     *
+     * @param item Item in our menu selected.
+     * @return True if interaction handled, call to super() if not.
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        // Check match selected item id to trigger appropriate interaction
+        // In this case, we're only testing for one match
+        if (id == R.id.action_settings) {
+            // If item selected is menu, launch settings activity
+            Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            startActivity(settingsIntent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
