@@ -49,9 +49,17 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         // getString retrieves a String value from the preferences. The second parameter is the default value for this preference.
+
+        // Get minimum magnitude preference
         String minMagnitude = sharedPrefs.getString(
                 getString(R.string.settings_min_magnitude_key),
                 getString(R.string.settings_min_magnitude_default));
+
+        // Get sort preference
+        String orderBy  = sharedPrefs.getString(
+                getString(R.string.settings_order_by_key),
+                getString(R.string.settings_order_by_default)
+        );
 
         // parse breaks apart the URI string that's passed into its parameter
         Uri baseUri = Uri.parse(USGS_REQUEST_URL);
@@ -63,9 +71,9 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
         uriBuilder.appendQueryParameter("format", "geojson");
         uriBuilder.appendQueryParameter("limit", "10");
         uriBuilder.appendQueryParameter("minmag", minMagnitude);
-        uriBuilder.appendQueryParameter("orderby", "time");
+        uriBuilder.appendQueryParameter("orderby", orderBy);
 
-        // Return the completed uri `https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&limit=10&minmag=minMagnitude&orderby=time`
+        // Return the completed uri
         return new EarthquakeLoader(this, uriBuilder.toString());
     }
 
@@ -132,7 +140,6 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderCallb
                 startActivity(websiteIntent);
             }
         });
-
 
         // Get a reference to the ConnectivityManager to check state of network connectivity
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

@@ -21,4 +21,14 @@ public class Earthquake {
     public String getLocation() { return location; }
     public long getTime() { return time; }
     public String getURL() { return url; }
+
+    @Override
+    public String toString() {
+        return "Earthquake {" + "\n" +
+                "Magnitude: " + Double.toString(magnitude) + "\n" +
+                "Location: " + location + "\n" +
+                "Time: " + Long.toString(time) + "\n" +
+                "URL: " + url + "\n" +
+                "}";
+    }
 }
